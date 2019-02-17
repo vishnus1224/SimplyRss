@@ -45,4 +45,12 @@ dependencies {
     implementation "io.arrow-kt:arrow-instances-data:$arrow_version"
     implementation "io.arrow-kt:arrow-effects-instances:$arrow_version"
     implementation "io.arrow-kt:arrow-effects-rx2-instances:$arrow_version"
+
+    testImplementation "org.mockito:mockito-core:2.24.0"
+    testImplementation("android.arch.core:core-testing:1.1.1", {
+        exclude group: 'com.android.support', module: 'support-compat'
+        exclude group: 'com.android.support', module: 'support-annotations'
+        exclude group: 'com.android.support', module: 'support-core-utils'
+    })
+    testImplementation 'com.jraska.livedata:testing-ktx:0.2.1'
 }

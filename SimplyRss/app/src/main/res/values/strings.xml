@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">SimplyRss</string>
+    <string name="article_list_icon_content_description">Article image</string>
+    <string name="loading_indicator_message">Please wait while content loads…</string>
+    <string name="error_message_load_articles">Could not load articles. Try again later.</string>
+    <string name="title_not_available">Title not available</string>
+    <string name="description_not_available">Description not available</string>
+    <string name="error_message_empty_article_list">No articles found. Try again later.</string>
+</resources>
