@@ -13,6 +13,7 @@ fun makeStringProviderWith(map: Map<Int, String>): StringProvider = { stringId -
 }
 
 inline fun <reified T> T.mock() = Mockito.mock(T::class.java)
+inline fun <reified T> Class<T>.mock() = Mockito.mock(this)
 
 val testSchedulersRule = TestRule { base, _ ->
     object : Statement() {

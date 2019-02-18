@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                  android:orientation="vertical"
+                  android:padding="8dp"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content">
+
+        <android.support.v7.widget.AppCompatTextView
+                android:text="@string/add_new_feed"
+                style="@style/SavedFeedTitle"
+                android:gravity="center"
+                android:background="@color/colorPrimary"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"/>
+
+        <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/add_new_feed_title"
+                android:hint="@string/hint_new_feed_title"
+                android:inputType="text"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"/>
+
+        <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/add_new_feed_url"
+                android:hint="@string/hint_new_feed_url"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"/>
+
+        <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/add_new_feed_description"
+                android:hint="@string/hint_new_feed_description"
+                android:inputType="textMultiLine"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"/>
+
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <Button
+                    android:id="@+id/add_new_feed_dismiss_button"
+                    style="@style/SavedFeedTitle"
+                    android:background="@color/colorPrimary"
+                    android:text="@string/cancel"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"/>
+
+            <Space android:layout_width="2dp" android:layout_height="match_parent"/>
+
+            <Button
+                    android:id="@+id/add_new_feed_confirm_button"
+                    style="@style/SavedFeedTitle"
+                    android:text="@string/confirm"
+                    android:background="@color/colorPrimary"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

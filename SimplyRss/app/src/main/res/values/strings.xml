@@ -6,4 +6,16 @@
     <string name="title_not_available">Title not available</string>
     <string name="description_not_available">Description not available</string>
     <string name="error_message_empty_article_list">No articles found. Try again later.</string>
+    <string name="feed_library_title">Feed Library</string>
+    <string name="add_new_feed">Add new feed</string>
+    <string name="hint_new_feed_title">Enter feed title</string>
+    <string name="hint_new_feed_url">Stretch your finger muscles. You are to enter an URL here</string>
+    <string name="hint_new_feed_description">Enter a short description of the feed</string>
+    <string name="cancel">Cancel</string>
+    <string name="confirm">Confirm</string>
+    <string name="error_message_invalid_url">Please enter a valid url.</string>
+    <string name="error_message_invalid_title">Please enter a valid title</string>
+    <string name="error_message_invalid_description">Please enter a valid description</string>
+    <string name="error_message_add_feed_failed">Failed to save feed. Try again later.</string>
+    <string name="progress_message_save_feed">Please wait while the feed is being saved…</string>
 </resources>
