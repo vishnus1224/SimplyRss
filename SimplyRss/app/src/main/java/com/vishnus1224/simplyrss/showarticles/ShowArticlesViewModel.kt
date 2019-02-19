@@ -63,6 +63,6 @@ internal class ShowArticlesViewModel(
 
     override fun onCleared() {
         super.onCleared()
-        disposables.clear()
+        disposables.dispose()
     }
 }

@@ -12,11 +12,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import com.vishnus1224.simplyrss.R
-import com.vishnus1224.simplyrss.di.provideAppModule
 import com.vishnus1224.simplyrss.feedlibrary.Feed
 import com.vishnus1224.simplyrss.feedlibrary.di.AddNewFeedWithSingleK
 import com.vishnus1224.simplyrss.feedlibrary.addnewfeed.AddNewFeedViewModel.AddNewFeedViewState.*
-import com.vishnus1224.simplyrss.feedlibrary.ui.AddNewFeedViewModelFactory
+import com.vishnus1224.simplyrss.feedlibrary.AddNewFeedViewModelFactory
+import com.vishnus1224.simplyrss.feedlibrary.di.AddNewFeedModuleWithSingleK
+import com.vishnus1224.simplyrss.feedlibrary.di.addNewFeedComponent
 import kotlinx.android.synthetic.main.dialog_fragment_add_new_feed.*
 
 internal class AddNewFeedDialogFragment : DialogFragment() {
@@ -36,14 +37,13 @@ internal class AddNewFeedDialogFragment : DialogFragment() {
 
         if (activity == null) return
 
+        initModule()
+
         add_new_feed_confirm_button.setOnClickListener { onConfirmButtonClick() }
         add_new_feed_dismiss_button.setOnClickListener { dismiss() }
 
-        val appModule = provideAppModule(activity!!.application)
-
         initProgressDialog()
-        //initPresenter()
-        initViewModel(appModule.addNewFeedModule(activity!!.application))
+        initViewModel()
 
         viewModel
             .bindToViewState()
@@ -60,18 +60,22 @@ internal class AddNewFeedDialogFragment : DialogFragment() {
             })
     }
 
+    private fun initModule() {
+        AddNewFeedModuleWithSingleK.init(AddNewFeedWithSingleK)
+    }
+
     fun bindToOnFeedAdded(): LiveData<Feed> = onFeedAddedLiveData
 
     private fun initProgressDialog() {
         progressDialog = ProgressDialog(activity!!)
     }
 
-    private fun initViewModel(addNewFeedModule: AddNewFeedWithSingleK) {
+    private fun initViewModel() {
         viewModel = ViewModelProvider(
             this,
             AddNewFeedViewModelFactory(
                 activity!!,
-                addNewFeedModule.saveFeedUseCase
+                addNewFeedComponent.saveFeedUseCase
             )
         ).get(AddNewFeedViewModel::class.java)
     }

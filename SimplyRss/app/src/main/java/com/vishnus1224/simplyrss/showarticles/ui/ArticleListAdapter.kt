@@ -11,7 +11,8 @@ import com.vishnus1224.simplyrss.R
 import com.vishnus1224.simplyrss.showarticles.Article
 
 internal class ArticleListAdapter(
-    private val articles: ArrayList<Article>
+    private val articles: ArrayList<Article>,
+    private val onArticleClick: (Article) -> Unit
 ) : RecyclerView.Adapter<ArticleListAdapter.ArticleViewHolder>() {
 
     fun setItems(articles: List<Article>) {
@@ -31,6 +32,7 @@ internal class ArticleListAdapter(
         article.imageUrl?.let { Picasso.get().load(it).fit().into(holder.iconImageView) }
         article.title?.let { holder.titleTextView.text = it }
         article.description?.let { holder.descTextView.text = it }
+        holder.itemView.setOnClickListener { onArticleClick(article) }
     }
 
     class ArticleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
