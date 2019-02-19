@@ -18,4 +18,13 @@
     <string name="error_message_invalid_description">Please enter a valid description</string>
     <string name="error_message_add_feed_failed">Failed to save feed. Try again later.</string>
     <string name="progress_message_save_feed">Please wait while the feed is being saved…</string>
+    <string name="error_message_empty_feeds">No saved feeds found. Click on the + icon in the top right corner to add feed</string>
+    <string name="error_message_get_saved_feeds">There was an error retrieving the saved feeds. Try again later.</string>
+    <string name="confirmation_message_delete_feed">Would you like to delete this feed permanently ?</string>
+    <string name="title_delete_feed_confirmation">Delete feed</string>
+    <string name="yes">YES</string>
+    <string name="no">NO</string>
+    <string name="progress_message_delete_feed">Please wait while the feed is being deleted…</string>
+    <string name="error_message_delete_feed_failed">Failed to delete feed. Please try again later.</string>
+    <string name="title_view_articles">Articles</string>
 </resources>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:orientation="vertical"
+                android:layout_margin="8dp"
+                android:background="@android:color/darker_gray"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+    <RelativeLayout
+            android:padding="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+        <ImageView
+                android:id="@+id/adapter_saved_feed_background"
+                android:background="@drawable/ic_launcher_background"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        <TextView
+                android:id="@+id/adapter_saved_feed_title"
+                android:text="@string/title_not_available"
+                android:gravity="center"
+                style="@style/SavedFeedTitle"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        <TextView
+                android:id="@+id/adapter_saved_feed_description"
+                android:text="@string/description_not_available"
+                android:layout_below="@id/adapter_saved_feed_title"
+                android:gravity="center"
+                style="@style/SavedFeedDescription"
+                android:layout_alignLeft="@id/adapter_saved_feed_title"
+                android:layout_alignRight="@id/adapter_saved_feed_title"
+                android:layout_marginTop="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+    </RelativeLayout>
+
+    <ImageView
+            android:id="@+id/adapter_saved_feed_delete_icon"
+            android:src="@android:drawable/ic_menu_close_clear_cancel"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_width="40dp"
+            android:layout_height="40dp"/>
+
+</RelativeLayout>

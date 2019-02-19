@@ -13,6 +13,8 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
         <activity android:name=".showarticles.ui.ShowArticlesActivity">
+        </activity>
+        <activity android:name=".feedlibrary.viewsavedfeeds.ViewSavedFeedsActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
