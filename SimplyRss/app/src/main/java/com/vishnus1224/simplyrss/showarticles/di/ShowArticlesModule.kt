@@ -8,19 +8,44 @@ import com.vishnus1224.simplyrss.showarticles.GetArticlesUseCase
 import com.vishnus1224.simplyrss.showarticles.getAllArticles
 import com.vishnus1224.simplyrss.showarticles.parser.parseFeed
 import com.vishnus1224.simplyrss.showarticles.webservice.fetchArticles
+import java.lang.IllegalStateException
 
-interface ShowArticlesModule<F> {
+internal val showArticlesComponent: ShowArticlesWithSingleK
+    get() = ShowArticlesModuleWithSingleK.getComponent()
+
+internal interface ShowArticlesComponent<F> {
     val getArticlesUseCase: GetArticlesUseCase<F>
 }
 
-class ShowArticlesWithSingleK : ShowArticlesModule<ForSingleK> {
-    override val getArticlesUseCase: GetArticlesUseCase<ForSingleK> =
-        getAllArticles(
+internal object ShowArticlesWithSingleK : ShowArticlesComponent<ForSingleK> {
+    override val getArticlesUseCase: GetArticlesUseCase<ForSingleK>
+        get() = getAllArticles(
             monadDefer = SingleK.monadDefer(),
             fetchArticles = fetchArticles(
                 applicativeError = SingleK.applicativeError(),
                 networkArticleParser = ::parseFeed
             )
         )
+}
+
+internal class ShowArticlesModuleWithSingleK  {
+
+    companion object {
+        @JvmStatic
+        private var component: ShowArticlesWithSingleK? = null
+
+        @JvmStatic
+        fun init(component: ShowArticlesWithSingleK) {
+            this.component = component
+        }
+
+        internal fun getComponent(): ShowArticlesWithSingleK {
+            if (component != null) {
+                return component!!
+            } else {
+                throw IllegalStateException("Show articles module not initialized, call init() before use")
+            }
+        }
+    }
 }
 

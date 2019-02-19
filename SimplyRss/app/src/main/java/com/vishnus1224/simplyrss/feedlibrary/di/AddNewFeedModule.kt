@@ -1,29 +1,23 @@
 package com.vishnus1224.simplyrss.feedlibrary.di
 
-import android.content.Context
 import arrow.effects.ForSingleK
 import arrow.effects.SingleK
 import arrow.effects.singlek.monadDefer.monadDefer
 import arrow.effects.typeclasses.MonadDefer
 import com.vishnus1224.simplyrss.feedlibrary.repository.FeedRepository
-import com.vishnus1224.simplyrss.feedlibrary.repository.FeedRepositoryImpl
-import com.vishnus1224.simplyrss.feedlibrary.repository.db.SqliteFeedDatabase
-import com.vishnus1224.simplyrss.feedlibrary.repository.db.SqliteOpenHelperImpl
 import com.vishnus1224.simplyrss.feedlibrary.usecase.SaveFeedUseCase
+import java.lang.IllegalStateException
 
-interface AddNewFeedModule<F> {
+internal val addNewFeedComponent: AddNewFeedWithSingleK
+    get() = AddNewFeedModuleWithSingleK.getComponent()
+
+interface AddNewFeedComponent<F> {
     val saveFeedUseCase: SaveFeedUseCase<F>
-    val feedRepository: FeedRepository
 }
 
-class AddNewFeedWithSingleK(
-    private val applicationContext: Context
-) : AddNewFeedModule<ForSingleK> {
+internal object AddNewFeedWithSingleK : AddNewFeedComponent<ForSingleK> {
     override val saveFeedUseCase: SaveFeedUseCase<ForSingleK>
-        get() = saveFeedUseCaseWithSingleK(feedRepository)
-    override val feedRepository: FeedRepository
-        get() = sqliteFeedRepository(applicationContext)
-
+        get() = saveFeedUseCaseWithSingleK(FeedLibraryModule.getComponent().feedRepository)
 }
 
 internal fun saveFeedUseCaseWithSingleK(
@@ -33,6 +27,22 @@ internal fun saveFeedUseCaseWithSingleK(
         get() = feedRepository
 }
 
-private val sqliteFeedRepository: (Context) -> FeedRepository = { context ->
-    FeedRepositoryImpl(SqliteFeedDatabase(SqliteOpenHelperImpl(context)))
+internal class AddNewFeedModuleWithSingleK {
+    companion object {
+        @JvmStatic
+        private var component: AddNewFeedWithSingleK? = null
+
+        @JvmStatic
+        fun init(component: AddNewFeedWithSingleK) {
+            this.component = component
+        }
+
+        internal fun getComponent(): AddNewFeedWithSingleK {
+            if (component != null) {
+                return component!!
+            } else {
+                throw IllegalStateException("View saved feeds module not initialized, call init() before use")
+            }
+        }
+    }
 }
